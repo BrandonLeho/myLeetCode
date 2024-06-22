@@ -1,15 +1,14 @@
 class Solution {
     public int numberOfSubarrays(int[] nums, int k) {
-        int output = 0, sum = 0;
-        Map<Integer, Integer> prefixSum = new HashMap<>();
-        prefixSum.put(sum, 1);
-
-        for(int i = 0; i < nums.length; i++){
-            sum += nums[i] % 2;
-            if(prefixSum.containsKey(sum - k)){
-                output += prefixSum.get(sum - k);
+        int output = 0, n = nums.length, odds = 0;
+        int[] count = new int[n + 1];
+        count[0] = 1;
+        for(int isOdd : nums){
+            odds += isOdd & 1;
+            if(odds - k >= 0){
+                output += count[odds - k];
             }
-            prefixSum.put(sum, prefixSum.getOrDefault(sum, 0) + 1);
+            count[odds]++;
         }
         return output;
     }
