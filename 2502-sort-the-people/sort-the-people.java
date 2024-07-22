@@ -1,16 +1,19 @@
 class Solution {
     public String[] sortPeople(String[] names, int[] heights) {
         for (int i = 0; i < heights.length - 1; i++) {
-            for (int j = 0; j < heights.length - 1 - i; j++) {
-                if (heights[j] < heights[j + 1]) {
-                    int temp = heights[j];
-                    heights[j] = heights[j + 1];
-                    heights[j + 1] = temp;
-                    String Temp = names[j];
-                    names[j] = names[j + 1];
-                    names[j + 1] = Temp;
+            int maxIdx = i;
+            for (int j = i + 1; j < heights.length; j++) {
+                if (heights[j] > heights[maxIdx]) {
+                    maxIdx = j;
                 }
             }
+            int temp = heights[maxIdx];
+            heights[maxIdx] = heights[i];
+            heights[i] = temp;
+
+            String Temp = names[maxIdx];
+            names[maxIdx] = names[i];
+            names[i] = Temp;
         }
         return names;
     }
