@@ -13,11 +13,7 @@ class Solution {
         int[][] a = new int[m][n];
         int direction = 0, r = 0, c = 0, corner = 0;
 
-        for (int i = 0; i < m; i++) {
-            Arrays.fill(a[i], -1);
-        }
-
-        while(head != null){
+        for (int i = 0; i < m * n; i++) {
             switch (direction) {
                 case 0: // right
                     if (head != null) {
