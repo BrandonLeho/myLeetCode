@@ -1,7 +1,3 @@
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
-
 class Solution {
     public int[] xorQueries(int[] arr, int[][] queries) {
         int[] answer = new int[queries.length];
