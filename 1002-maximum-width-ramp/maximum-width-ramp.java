@@ -1,22 +1,22 @@
 class Solution {
     public int maxWidthRamp(int[] nums) {
         int n = nums.length;
-        Stack<Integer> stack = new Stack<>();
+        int[] rightMax = new int[n];
+        rightMax[n - 1] = nums[n - 1];
+
+        for (int i = n - 2; i >= 0; i--) 
+        rightMax[i] = Math.max(rightMax[i + 1], nums[i]);
         
-        for (int i = 0; i < n; ++i) {
-            if (stack.isEmpty() || nums[stack.peek()] > nums[i]) {
-                stack.push(i);
-            }
+        int left = 0, right = 0, maxVal = 0;
+
+        while (right < n) {
+            while (right<n && nums[left]<=rightMax[right])
+            right++;           
+            maxVal = Math.max(maxVal, right - left-1);
+            left++;
+            right = left + maxVal + 1; 
         }
-        
-        int maxWidth = 0;
-        
-        for (int j = n - 1; j >= 0; --j) {
-            while (!stack.isEmpty() && nums[stack.peek()] <= nums[j]) {
-                maxWidth = Math.max(maxWidth, j - stack.pop());
-            }
-        }
-        
-        return maxWidth;
+
+        return maxVal;
     }
 }
