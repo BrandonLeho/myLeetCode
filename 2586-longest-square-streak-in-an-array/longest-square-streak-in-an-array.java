@@ -2,7 +2,6 @@ class Solution {
     public int longestSquareStreak(int[] nums) {
         HashSet<Integer> squares = new HashSet<>();
         int max = 0;
-        Arrays.sort(nums);
 
         for (int num : nums) {
             squares.add(num);
