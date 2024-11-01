@@ -4,16 +4,15 @@ class Solution {
         char c = sb.charAt(0);
         int count = 1;
 
-        for(int i = 1; i < sb.length(); i++){
+        for (int i = 1; i < sb.length(); i++) {
             char curr = sb.charAt(i);
-            if(curr == c){
+            if (curr == c) {
                 count++;
-                if(count > 2){
+                if (count > 2) {
                     sb.deleteCharAt(i);
                     i--;
                 }
-            }
-            else{
+            } else {
                 c = curr;
                 count = 1;
             }
