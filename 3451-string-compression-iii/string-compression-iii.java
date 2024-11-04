@@ -5,7 +5,7 @@ class Solution {
         char c = word.charAt(0);
 
         for (int i = 1; i < word.length(); i++) {
-            char curr = word.charAt(i), num = (char)(count + '0');
+            char curr = word.charAt(i), num = (char) (count + '0');
             if (c == curr) {
                 if (count > 8) {
                     comp.append(num);
@@ -13,7 +13,6 @@ class Solution {
                     count = 0;
                 }
                 count++;
-
             } else {
                 comp.append(num);
                 comp.append(c);
@@ -22,7 +21,7 @@ class Solution {
             }
 
         }
-        comp.append((char)(count + '0'));
+        comp.append((char) (count + '0'));
         comp.append(c);
 
         return comp.toString();
