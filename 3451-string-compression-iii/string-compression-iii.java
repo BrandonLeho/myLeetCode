@@ -5,13 +5,12 @@ class Solution {
         char c = word.charAt(0);
 
         for (int i = 1; i < word.length(); i++) {
-            char curr = word.charAt(i), num = (char) (count + '0');
-            if (c == curr && count < 9) {
+            if (c == word.charAt(i) && count < 9) {
                 count++;
             } else {
-                comp.append(num).append(c);
+                comp.append((char) (count + '0')).append(c);
                 count = 1;
-                c = curr;
+                c = word.charAt(i);
             }
 
         }
