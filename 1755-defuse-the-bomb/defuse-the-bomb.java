@@ -4,13 +4,11 @@ class Solution {
         if(k == 0)
             return decode;
 
-        int[] wrap = new int[code.length * 3];
-        int mid = wrap.length / 3;
+        int[] wrap = new int[code.length * 2];
+        int mid = wrap.length / 2;
         for(int i = 0; i < wrap.length; i++){
             if(i < mid)
                 wrap[i] = code[i];
-            else if(i < mid * 2)
-                wrap[i] = code[i - mid];
             else
                 wrap[i] = wrap[i - mid];
         }
@@ -19,7 +17,7 @@ class Solution {
         for(int i = 0; i < decode.length; i++){
             for(int j = 0; j < Math.abs(k); j++){
                 if(k < 0){
-                    decode[i] += wrap[mid * 2 - 1 + i - j];
+                    decode[i] += wrap[mid - 1 + i - j];
                 } else {
                     decode[i] += wrap[i + j + 1];
                 }
