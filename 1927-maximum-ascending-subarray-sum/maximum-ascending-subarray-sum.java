@@ -7,10 +7,8 @@ class Solution {
 
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] <= nums[i - 1])
-                curr = 0;
+                curr = nums[i];
             else if (nums[i] > nums[i - 1]) {
-                if (curr == 0)
-                    curr += nums[i - 1];
                 curr += nums[i];
                 if (curr > max)
                     max = curr;
