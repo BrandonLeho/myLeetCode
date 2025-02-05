@@ -1,25 +1,24 @@
 class Solution {
     public boolean areAlmostEqual(String s1, String s2) {
-        if(s1.length() != s2.length())
-            return false;
+        int i = -1, j = -1;
+        int cnt = 0;
 
-        char[] s3 = s1.toCharArray();
-        Arrays.sort(s3);
-        char[] s4 = s2.toCharArray();
-        Arrays.sort(s4);
-
-        if(!Arrays.equals(s3, s4))
-            return false;
-
-        int count = 0;
-
-        for(int i = 0; i < s1.length(); i++){
-            if(s1.charAt(i) != s2.charAt(i))
-                count++;
-            if(count > 2)
-                return false;
+        for (int k = 0; k < s1.length(); k++) {
+            if (s1.charAt(k) != s2.charAt(k)) {
+                cnt++;
+                if (i == -1)
+                    i = k;
+                else if (j == -1)
+                    j = k;
+            }
         }
 
-        return true;
+        if (cnt == 0)
+            return true;
+        else if (cnt == 2 && s1.charAt(i) == s2.charAt(j) && s1.charAt(j) == s2.charAt(i)) {
+            return true;
+        }
+
+        return false;
     }
 }
