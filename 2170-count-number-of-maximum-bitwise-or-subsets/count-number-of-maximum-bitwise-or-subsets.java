@@ -1,24 +1,23 @@
 class Solution {
-    public void backtrack(int[] nums, int index, int currentOR, int maxOR, int[] count) {
-        if (currentOR == maxOR) {
-            count[0]++;
-        }
-
-        for (int i = index; i < nums.length; i++) {
-            backtrack(nums, i + 1, currentOR | nums[i], maxOR, count);
-        }
-    }
-
     public int countMaxOrSubsets(int[] nums) {
         int maxOR = 0;
-
         for (int num : nums) {
             maxOR |= num;
         }
 
-        int[] count = new int[1];
-        backtrack(nums, 0, 0, maxOR, count);
+        return backtrack(nums, maxOR, 0, 0);
+    }
 
-        return count[0];
+    private int backtrack(int[] nums, int maxOR, int index, int currentOR) {
+        if (index == nums.length) {
+            return currentOR == maxOR ? 1 : 0;
+        }
+
+        if (currentOR == maxOR) {
+            return 1 << (nums.length - index);
+        }
+
+        return backtrack(nums, maxOR, index + 1, currentOR | nums[index]) +
+                backtrack(nums, maxOR, index + 1, currentOR);
     }
 }
